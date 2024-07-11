@@ -1,8 +1,9 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 import Home from "../screens/Home";
 import Options from "../screens/Options";
-import { SafeAreaProvider } from "react-native-safe-area-context";
+import CurrencyList from "../screens/CurrencyList";
 
 const MainStack = createStackNavigator();
 const MainStackScreen = () => (
@@ -16,6 +17,7 @@ const MainStackScreen = () => (
       options={{ headerShown: false }}
     />
     <MainStack.Screen name="Options" component={Options} />
+    <MainStack.Screen name="CurrencyList" component={CurrencyList} />
   </MainStack.Navigator>
 );
 const Navigation = () => (
