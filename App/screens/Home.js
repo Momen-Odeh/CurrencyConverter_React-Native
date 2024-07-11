@@ -5,14 +5,16 @@ import {
   Text,
   ScrollView,
   Dimensions,
+  TouchableOpacity,
 } from "react-native";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import colors from "../constants/colors";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import HomeLogo from "../components/HomeLogo";
 import ConversionInput from "../components/ConversionInput";
 import ImageButton from "../components/ImageButton";
 import KeyboardSpacer from "../components/KeyboardSpacer";
+import { Entypo } from "@expo/vector-icons";
 const screen = Dimensions.get("window");
 const styles = StyleSheet.create({
   container: {
@@ -34,8 +36,12 @@ const styles = StyleSheet.create({
   content: {
     paddingTop: screen.height * 0.2,
   },
+  header: {
+    alignItems: "flex-end",
+    marginHorizontal: 20,
+  },
 });
-const Home = () => {
+const Home = ({ navigation }) => {
   const insets = useSafeAreaInsets();
   const baseCurrency = "USD";
   const quoteCurrency = "ILS";
@@ -48,6 +54,14 @@ const Home = () => {
     <View style={[{ paddingTop: insets.top }, styles.container]}>
       <ScrollView scrollEnabled={scrollEnabled}>
         <StatusBar barStyle={"light-content"} backgroundColor={colors.blue} />
+
+        <TouchableOpacity
+          onPress={() => navigation.push("Options")}
+          style={styles.header}
+        >
+          <Entypo name="cog" size={32} color={colors.white} />
+        </TouchableOpacity>
+
         <View style={styles.content}>
           <HomeLogo />
           <Text style={styles.textHeader}>Currency Converter</Text>

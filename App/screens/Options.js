@@ -1,7 +1,8 @@
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import RowItem from "../components/RowItem";
 import RowSeparator from "../components/RowSeparator";
-import { ScrollView, View, Alert, Linking } from "react-native";
+import { ScrollView, View, Alert, Linking, StatusBar } from "react-native";
+import colors from "../constants/colors";
 
 const Options = () => {
   const insets = useSafeAreaInsets();
@@ -39,6 +40,7 @@ const Options = () => {
       }}
     >
       {/* safe area */}
+      <StatusBar barStyle={"dark-content"} backgroundColor={colors.white} />
       {options.map((item, index) => (
         <View key={index}>
           <RowItem
