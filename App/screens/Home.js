@@ -43,12 +43,17 @@ const styles = StyleSheet.create({
 });
 const Home = ({ navigation }) => {
   const insets = useSafeAreaInsets();
-  const baseCurrency = "USD";
-  const quoteCurrency = "ILS";
   const conversionRate = 3.689;
   const date = "2020-03-23";
-
+  const [baseCurrency, setBaseCurrency] = useState("USD");
+  const [quoteCurrency, setQuoteCurrency] = useState("ILS");
+  const [value, setValue] = useState(1);
   const [scrollEnabled, setScrollEnabled] = useState(false);
+
+  const swapCurrency = () => {
+    setBaseCurrency(quoteCurrency);
+    setQuoteCurrency(baseCurrency);
+  };
 
   return (
     <View style={[{ paddingTop: insets.top }, styles.container]}>
@@ -67,7 +72,7 @@ const Home = ({ navigation }) => {
           <Text style={styles.textHeader}>Currency Converter</Text>
           <ConversionInput
             text={baseCurrency}
-            value="123"
+            value={`${value}`}
             onButtonPress={() =>
               navigation.push("CurrencyList", {
                 title: "Base Currency",
@@ -75,11 +80,13 @@ const Home = ({ navigation }) => {
               })
             }
             keyboardType="numeric"
-            onChangeText={(text) => console.log("text", text)}
+            onChangeText={(text) => setValue(text)}
           />
           <ConversionInput
             text={quoteCurrency}
-            value="123"
+            value={
+              value && `${(parseFloat(value) * conversionRate).toFixed(2)}`
+            }
             onButtonPress={() =>
               navigation.push("CurrencyList", {
                 title: "Quote Currency",
@@ -91,10 +98,7 @@ const Home = ({ navigation }) => {
           <Text style={styles.text}>
             {`1 ${baseCurrency} = ${conversionRate} ${quoteCurrency} as of ${date}`}
           </Text>
-          <ImageButton
-            text={"Reverse Currency"}
-            onPress={() => alert("todo!")}
-          />
+          <ImageButton text={"Reverse Currency"} onPress={swapCurrency} />
           <KeyboardSpacer onToggle={(visible) => setScrollEnabled(visible)} />
         </View>
       </ScrollView>
