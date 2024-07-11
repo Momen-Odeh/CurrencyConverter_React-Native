@@ -4,15 +4,23 @@ import currencies from "../data/currencies.json";
 import RowItem from "../components/RowItem";
 import RowSeparator from "../components/RowSeparator";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-const CurrencyList = ({ navigation }) => {
+const CurrencyList = ({ navigation, route = {} }) => {
   const insets = useSafeAreaInsets();
+  const params = route.params || {};
   return (
     <View style={{ backgroundColor: colors.white }}>
       <StatusBar barStyle={"dark-content"} backgroundColor={colors.white} />
       <FlatList
         data={currencies}
         renderItem={({ item }) => {
-          return <RowItem text={item} onPress={() => navigation.pop()} />;
+          const selected = params.activeCurrency === item;
+          return (
+            <RowItem
+              text={item}
+              onPress={() => navigation.pop()}
+              iconName={selected && "check"}
+            />
+          );
         }}
         keyExtractor={(item) => item}
         ItemSeparatorComponent={() => <RowSeparator />}
