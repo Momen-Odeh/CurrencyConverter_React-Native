@@ -8,7 +8,7 @@ import CurrencyList from "../screens/CurrencyList";
 const MainStack = createStackNavigator();
 const MainStackScreen = () => (
   <MainStack.Navigator
-  // initialRouteName="Options"
+  // initialRouteName="CurrencyList"
   // screenOptions={{ headerShown: false }}
   >
     <MainStack.Screen
@@ -17,7 +17,11 @@ const MainStackScreen = () => (
       options={{ headerShown: false }}
     />
     <MainStack.Screen name="Options" component={Options} />
-    <MainStack.Screen name="CurrencyList" component={CurrencyList} />
+    <MainStack.Screen
+      name="CurrencyList"
+      component={CurrencyList}
+      options={({ route }) => ({ title: route.params.title })}
+    />
   </MainStack.Navigator>
 );
 const Navigation = () => (
