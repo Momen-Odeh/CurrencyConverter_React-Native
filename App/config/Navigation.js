@@ -6,8 +6,15 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 
 const MainStack = createStackNavigator();
 const MainStackScreen = () => (
-  <MainStack.Navigator>
-    <MainStack.Screen name="Home" component={Home} />
+  <MainStack.Navigator
+  // initialRouteName="Options"
+  // screenOptions={{ headerShown: false }}
+  >
+    <MainStack.Screen
+      name="Home"
+      component={Home}
+      options={{ headerShown: false }}
+    />
     <MainStack.Screen name="Options" component={Options} />
   </MainStack.Navigator>
 );
