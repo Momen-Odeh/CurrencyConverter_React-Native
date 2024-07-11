@@ -5,7 +5,9 @@ import {
   Text,
   ScrollView,
   Dimensions,
+  Keyboard,
 } from "react-native";
+import { useState, useEffect } from "react";
 import colors from "../constants/colors";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import HomeLogo from "../components/HomeLogo";
@@ -41,9 +43,24 @@ const Home = () => {
   const conversionRate = 3.689;
   const date = "2020-03-23";
 
+  const [scrollEnabled, setScrollEnabled] = useState(false);
+  useEffect(() => {
+    const showListner = Keyboard.addListener("keyboardDidShow", () => {
+      setScrollEnabled(true);
+    });
+
+    const hideListener = Keyboard.addListener("keyboardDidHide", () => {
+      setScrollEnabled(false);
+    });
+    return () => {
+      showListner.remove();
+      hideListener.remove();
+    };
+  }, []);
+
   return (
     <View style={[{ paddingTop: insets.top }, styles.container]}>
-      <ScrollView>
+      <ScrollView scrollEnabled={scrollEnabled}>
         <StatusBar barStyle={"light-content"} backgroundColor={colors.blue} />
         <View style={styles.content}>
           <HomeLogo />
