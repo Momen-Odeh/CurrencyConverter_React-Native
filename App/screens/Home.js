@@ -3,6 +3,7 @@ import colors from "../constants/colors";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import HomeLogo from "../components/HomeLogo";
 import ConversionInput from "../components/ConversionInput";
+import ImageButton from "../components/ImageButton";
 // import { format } from "date-fns";
 const styles = StyleSheet.create({
   container: {
@@ -51,6 +52,7 @@ const Home = () => {
       <Text style={styles.text}>
         {`1 ${baseCurrency} = ${conversionRate} ${quoteCurrency} as of ${date}`}
       </Text>
+      <ImageButton text={"Reverse Currency"} onPress={() => alert("todo!")} />
     </View>
   );
 };
