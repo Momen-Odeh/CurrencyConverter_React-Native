@@ -49,13 +49,8 @@ const Home = ({ navigation }) => {
 
   const [value, setValue] = useState(1);
   const [scrollEnabled, setScrollEnabled] = useState(false);
-  const {
-    baseCurrency,
-    quoteCurrency,
-    swapCurrency,
-    setBaseCurrency,
-    setQuoteCurrency,
-  } = useContext(ConversionContext);
+  const { baseCurrency, quoteCurrency, swapCurrency } =
+    useContext(ConversionContext);
 
   return (
     <View style={[{ paddingTop: insets.top }, styles.container]}>
@@ -78,8 +73,7 @@ const Home = ({ navigation }) => {
             onButtonPress={() =>
               navigation.push("CurrencyList", {
                 title: "Base Currency",
-                activeCurrency: baseCurrency,
-                onChange: (currency) => setBaseCurrency(currency),
+                isBaseCurrency: true,
               })
             }
             keyboardType="numeric"
@@ -93,8 +87,7 @@ const Home = ({ navigation }) => {
             onButtonPress={() =>
               navigation.push("CurrencyList", {
                 title: "Quote Currency",
-                activeCurrency: quoteCurrency,
-                onChange: (currency) => setQuoteCurrency(currency),
+                isBaseCurrency: false,
               })
             }
             editable={false}
