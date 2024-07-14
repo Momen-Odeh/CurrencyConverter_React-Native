@@ -1,6 +1,5 @@
 import { format } from "date-fns";
 
-// We have a set of sample rates
 const SAMPLE_RATES = {
   AUD: 1.6164,
   BGN: 1.9558,
@@ -53,7 +52,7 @@ export const api = (fullPath = "") => {
     setTimeout(() => {
       resolve({
         base: baseCurrency,
-        date: format(new Date(), "yyyy-MM-dd"),
+        date: format(new Date(), "MMM do, yyyy"),
         rates: {
           ...SAMPLE_RATES,
           [baseCurrency]: 1,
