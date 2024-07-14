@@ -7,7 +7,7 @@ import {
   Dimensions,
   TouchableOpacity,
 } from "react-native";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import colors from "../constants/colors";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import HomeLogo from "../components/HomeLogo";
@@ -15,6 +15,7 @@ import ConversionInput from "../components/ConversionInput";
 import ImageButton from "../components/ImageButton";
 import KeyboardSpacer from "../components/KeyboardSpacer";
 import { Entypo } from "@expo/vector-icons";
+import { ConversionContext } from "../util/ConversionContext";
 const screen = Dimensions.get("window");
 const styles = StyleSheet.create({
   container: {
@@ -45,15 +46,16 @@ const Home = ({ navigation }) => {
   const insets = useSafeAreaInsets();
   const conversionRate = 3.689;
   const date = "2020-03-23";
-  const [baseCurrency, setBaseCurrency] = useState("USD");
-  const [quoteCurrency, setQuoteCurrency] = useState("ILS");
+
   const [value, setValue] = useState(1);
   const [scrollEnabled, setScrollEnabled] = useState(false);
-
-  const swapCurrency = () => {
-    setBaseCurrency(quoteCurrency);
-    setQuoteCurrency(baseCurrency);
-  };
+  const {
+    baseCurrency,
+    quoteCurrency,
+    swapCurrency,
+    setBaseCurrency,
+    setQuoteCurrency,
+  } = useContext(ConversionContext);
 
   return (
     <View style={[{ paddingTop: insets.top }, styles.container]}>

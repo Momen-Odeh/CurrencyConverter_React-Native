@@ -7,6 +7,7 @@ import Options from "../screens/Options";
 import CurrencyList from "../screens/CurrencyList";
 import { Entypo } from "@expo/vector-icons";
 import colors from "../constants/colors";
+import { ConversionContextProvider } from "../util/ConversionContext";
 
 const MainStack = createStackNavigator();
 const MainStackScreen = () => (
@@ -59,7 +60,9 @@ const ModalStackScreen = () => (
 const Navigation = () => (
   <NavigationContainer>
     <SafeAreaProvider>
-      <ModalStackScreen />
+      <ConversionContextProvider>
+        <ModalStackScreen />
+      </ConversionContextProvider>
     </SafeAreaProvider>
   </NavigationContainer>
 );
