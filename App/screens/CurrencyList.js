@@ -17,7 +17,12 @@ const CurrencyList = ({ navigation, route = {} }) => {
           return (
             <RowItem
               text={item}
-              onPress={() => navigation.pop()}
+              onPress={() => {
+                if (params.onChange) {
+                  params.onChange(item);
+                }
+                navigation.pop();
+              }}
               iconName={selected && "check"}
             />
           );

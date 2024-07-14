@@ -77,6 +77,7 @@ const Home = ({ navigation }) => {
               navigation.push("CurrencyList", {
                 title: "Base Currency",
                 activeCurrency: baseCurrency,
+                onChange: (currency) => setBaseCurrency(currency),
               })
             }
             keyboardType="numeric"
@@ -91,6 +92,7 @@ const Home = ({ navigation }) => {
               navigation.push("CurrencyList", {
                 title: "Quote Currency",
                 activeCurrency: quoteCurrency,
+                onChange: (currency) => setQuoteCurrency(currency),
               })
             }
             editable={false}
